@@ -31,8 +31,12 @@ export const App = () => {
     };
 
     const onWait = () => {
-        if (!doubleClickTimer) setDoubleClickTimer(setTimeout(() => {setDoubleClickTimer(null)}, 300));
-        else {
+        if (!doubleClickTimer) {
+            setDoubleClickTimer(setTimeout(() => {
+                clearInterval(doubleClickTimer);
+                setDoubleClickTimer(null);
+            }, 300));
+        } else {
             timerStore.wait();
             setDoubleClickTimer(null);
         }
